@@ -35,11 +35,11 @@ class Parliamentarian
     document.at('dl[@class="tabla"]/[6]').content.strip rescue nil
   end   
   
-  def posts                                                                                              
+  def posts                        
     document.search('div[@class="indentar2"]//li').map { |l| l.content.strip } rescue []
   end
 
   def document
-     @document ||= Nokogiri::HTML(open(self.url))
+     @document ||= Nokogiri::HTML(open(self.url).read)
   end
 end

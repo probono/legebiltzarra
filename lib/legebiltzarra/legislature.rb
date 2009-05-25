@@ -15,6 +15,6 @@ class Legislature
 
 
   def document
-     @document ||= Nokogiri::HTML(open(self.url))
+     @document ||= Nokogiri::HTML(open(self.url).read)
   end
 end

@@ -45,8 +45,6 @@ describe Legislature do
       end
             
     end
-        
-
     
   end
 
