@@ -65,6 +65,12 @@ describe Intervention do
              "http://bideoak.parlam.euskadi.net/ramgen/bideoak/08/00/20070427/2007042700_02_256k.rm?usehostname&start=01:36:47.7&end=01:40:30.0"})
     end   
 
+    it "should get the speakers" do
+      @intervention.speakers.should be_an_instance_of(Array)
+      @intervention.speakers.should_not be_empty
+      @intervention.speakers.should include("Ezenarro Egurbide, Aintzane (GP Mixto-Aralar)")
+    end   
+
 
   end
 

@@ -35,6 +35,10 @@ class Intervention
     document.at("th[text()^='Tramit. asunto:']").next_sibling.content.strip rescue nil
   end
 
+  def speakers
+    document.at("th[text()^='Oradores:']").next_sibling.inner_html.split('<br>') rescue []
+  end
+
   def txt_url
     BASE_URL + document.at("//img[@alt='TXT']").parent['href'] rescue nil
   end
