@@ -25,6 +25,10 @@ describe Intervention do
       @intervention.file_number.should == '08\08\03\00\0060'
     end   
 
+    it "should get source initiative" do
+      @intervention.source_initiative.should == '08\11\02\01\0386'
+    end   
+
     it "should get session date" do
       @intervention.session_date.should == '27.04.2007'
     end   

@@ -10,6 +10,9 @@ class Intervention
   def file_number
     document.at("th[text()^='Núm. expediente']").next_sibling.content.strip rescue nil
   end
+  def source_initiative
+    document.at("th[text()^='Iniciativa origen']").next_sibling.content.strip rescue nil
+  end
   
   def session_date
     document.at("th[text()^='Fecha sesión:']").next_sibling.content.strip rescue nil
@@ -36,7 +39,7 @@ class Intervention
   end
 
   def speakers
-    document.at("th[text()^='Oradores:']").next_sibling.inner_html.split('<br>') rescue []
+    document.at("th[text()^='Oradores:']").next_sibling.inner_html.strip.split('<br>') rescue []
   end
 
   def txt_url
