@@ -1,6 +1,6 @@
 class Intervention
   BASE_URL = "http://www.parlamento.euskadi.net"
-  attr_accessor :id, :url
+  attr_accessor :id, :url, :txt_url
 
   def initialize(id)
     @id = id
@@ -30,8 +30,26 @@ class Intervention
   def original_initiative
     document.at("th[text()^='Iniciativa origen:']").next_sibling.content.strip rescue nil
   end
-    
+  
+  def subject_treated
+    document.at("th[text()^='Tramit. asunto:']").next_sibling.content.strip rescue nil
+  end
+
+  def txt_url
+    BASE_URL + document.at("//img[@alt='TXT']").parent['href'] rescue nil
+  end
+
+  def full_txt
+    @txt_document ||= open(self.txt_url).read
+  end
+
+  def pdf_url
+    BASE_URL + document.at("//div[@class='boton']/script").inner_html.match(/href='(.*)' title/)[1]
+  end
+  def videos
+    document.search("//a[text()=' (256 K)']").map { |v| { v.parent.content => v['href']} } rescue []
+  end  
   def document
-     @document ||= Nokogiri::HTML(open(self.url).read)
+    @document ||= Nokogiri::HTML(open(self.url).read)
   end
 end

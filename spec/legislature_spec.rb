@@ -38,12 +38,6 @@ describe Legislature do
         @legislature.parliamentarians.should have(107).parliamentarians
       end
 
-      it "should include 'Rubalkaba Quintana'" do
-        @legislature.parliamentarians.first.last_name.should include('Abascal Conde')
-        @legislature.parliamentarians[50].last_name.should include('Karrera Agirrebarrena')
-        @legislature.parliamentarians.last.last_name.should include('Zubimendi Izaga')
-      end
-            
     end
     
   end
